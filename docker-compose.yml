@@ -1,0 +1,13 @@
+version: "3"
+services:
+  sketch2face:
+    build:
+      context: .
+    image: nthacks/sketch2face
+    container_name: sketch2face
+    volumes:
+      - C:\Users\nisch\Desktop\project\image\input:/workspace/input
+      - C:\Users\nisch\Desktop\project\image\output:/workspace/output
+      - C:\Users\nisch\Desktop\project\image\app:/workspace/app
+    ports:
+      - 8080:8080

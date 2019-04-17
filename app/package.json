@@ -1,0 +1,21 @@
+{
+  "name": "sketch2face",
+  "version": "1.0.0",
+  "description": "Converts sketches to faces and vice versa",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "python-shell": "^1.0.6",
+    "socket.io": "^2.1.1",
+    "path": "^0.12.7",
+    "multer": "^1.4.1",
+    "fs": "^0.0.2"
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "license": "MIT"
+}
