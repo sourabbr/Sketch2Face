@@ -14,7 +14,9 @@ COPY app .
 RUN npm install
 ENV PORT=8080
 CMD npm start
-EXPOSE 8080
+
 # RUN npm install -g nodemon
-# CMD nodemon -L
+# CMD nodemon -L --watch . app.js
 # CMD ["/bin/bash","-c","python test.py --phase val --dataroot /workspace/input --results_dir /workspace/output --name sketch2face_cyclegan --model cycle_gan  --direction AtoB --gpu_ids -1"]
+
+EXPOSE 8080

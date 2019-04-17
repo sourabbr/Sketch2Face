@@ -1,21 +1,42 @@
 $(function () {
-
   var socket = io()
-  socket.on('done', function (message) {
-      console.log("Done",{message})
-      $("#ajaxloader").hide(500)
-      $("#imgpreview").slideUp(500)
-      $(`<img src = "/input.png" class="img-fluid" id="input_img" alt="Input image" title="Input">`).appendTo('#output')
-      $(`<img src = "/result.png" class="img-fluid" id="result_img" alt="Result image" title="Result">`).appendTo('#output')
-     
+  var id = Date.now()
+  console.log({id})
+  // 1
+  socket.on('connect', function(){
+    console.log(socket.id)
   })
-
+  // 3
+  socket.on('done', function (message) {
+    console.log("Done",{message})
+    $("#ajaxloader").hide(500)
+    if($("#choice :selected").val()=="sketch"){
+      $(`<img src="/output/result_face_${id}.png?${Date.now()}" style="height:256px;width:${$("#imgpreview").width()}px" class="img-fluid" id="result_face" alt="Result image" title="Result">`).appendTo('#output')
+      $(`<img src="/output/result_sketch_${id}.png?${Date.now()}" style="display:none;height:256px;width:${$("#imgpreview").width()}px" class="img-fluid" id="result_sketch" alt="Result image" title="Result">`).appendTo('#output')
+    }
+    else{
+      $(`<img src="/output/result_face_${id}.png?${Date.now()}" style="display:none;height:256px;width:${$("#imgpreview").width()}px" class="img-fluid" id="result_face" alt="Result image" title="Result">`).appendTo('#output')
+      $(`<img src="/output/result_sketch_${id}.png?${Date.now()}" style="height:256px;width:${$("#imgpreview").width()}px" class="img-fluid" id="result_sketch" alt="Result image" title="Result">`).appendTo('#output')
+    }
+  })
+  $("#choice").on("change",function(){
+    if (this.value=="sketch"){
+      $("#result_sketch").hide()
+      $("#result_face").show()
+    }
+    else{
+      $("#result_face").hide()
+      $("#result_sketch").show()
+    }
+  })
   socket.on("status", function(status){
     console.log({status})
     $("#status").text(status)
   })
 
-  socket.on("console", x => console.log(x))
+  socket.on("console", function(message){
+    console.log(message)
+  })
 
   socket.on('alert', function (message) {
     console.log({alert:message})
@@ -30,9 +51,10 @@ $(function () {
   
   
   function uploadImage() {
+    // 2
     console.log("uploadImage")
     $.ajax({
-        url: '/upload',
+        url: `/upload/${id}`,
         type: 'POST',
         data: new FormData($('form')[0]),
         cache: false,
@@ -55,7 +77,7 @@ $(function () {
         success: function(data) {
           if(data==="OK"){
             console.log("executeScript")
-            socket.emit('executeScript','')
+            socket.emit('executeScript',id)
           }
         }
     })

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <title>Sketch2Face</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  </head>
+  
+  <body>
+    <div class="container" align="center">
+      <div class="row">
+      </div>
+        <center><p class="alert alert-info" style="color:#046c8e;font-size:180%;margin-top: 5px">SKETCH TO FACE CONVERTER</p>
+          <br><br>
+        </center>
+          
+      <form enctype="multipart/form-data">
+        <div class="input-group" style="max-width:480px">
+          
+          <select class="form-control" id="choice">
+            <option value="sketch">Sketch2Face</option>
+            <option value="face">Face2Sketch</option>
+          </select>
+        </div>
+        <div class="input-group" style="max-width:480px">
+          <div class="custom-file">
+            <input  name="imagefile" type="file" id="imageUpload" accept=".png, .jpg, .jpeg" class="custom-file-input" >
+            <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
+          </div>
+        </div>
+      </form>
+      <br>
+      <code id="status">
+        Please upload a sketch to continue
+      </code>
+      <br>
+      <img class="img-fluid center" id="ajaxloader" style="display:none" src="loader.gif" alt="loading">
+      <img class="img-fluid center" id="imgpreview" src="preview.png" alt="your image" title="Preview"/>
+
+      <div id="output">
+      </div>
+      <br><br>
+      <div id="about">
+        <hr>
+        <center><h6 style="color:#046c8e;font-size:150%;">About</h6></center>
+        <hr>
+        <p>Given a sketch of a person, this application converts the sketch into realistic image of the faces of that person. 
+          Generating an image is challenging as it involves creating all the pixels of an image. This can be learnt if the parameters to the distribution of pixels in the image is known. GANs (Generative Adversarial Neural Network) can be used to generate images by making the model to learn the pixel distribution of images. Given an input image GAN tries to generate a latent space based on many image parameters such as mean, variance, correlation between pixels and so on. Different GAN models such as pix2pix, cycleGAN, BicycleGAN are tuned to generate image sample.
+          This app can mainly be used in forensics.
+        </p>
+      </div><br><br>      
+      <div id="team">
+        <hr>
+        <center><h6 style="color:#046c8e;font-size:150%;">Developed by</h6></center>
+        <hr>
+        <table class="table table-striped table-bordered table-hover ">
+          <thead>
+            <tr><th>Name</th><th>Contact</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nischal Tonthanahal</td><td>nischal@nthacks.com</td></tr>
+            <tr><td>Shravan KP</td><td>shravankp14@gmail.com</td></tr>
+            <tr><td>Sourab BR</td><td> sourabbr@gmail.com</td></tr>
+            <tr><td>Suhas Buravalla</td><td>suhas3is104@dayanandasagar.edu</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+
+  
+</html>

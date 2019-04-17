@@ -1,7 +1,10 @@
-#imgpreview{
+.center{
   height:256px;
   width:auto;
   display:block;
   margin-left: auto;
   margin-right: auto;
 }
+/* .container{
+  border: 1px solid black;
+} */
